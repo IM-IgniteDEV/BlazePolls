@@ -1,0 +1,5 @@
+name: BlazePolls
+version: '1.0.0'
+main: com.ignitedev.blazePolls.BlazePolls
+api-version: '1.21'
+authors: [ IgniteDEV ]
