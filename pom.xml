@@ -107,10 +107,10 @@
             <version>0.5.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.twodevsstudio</groupId>
+            <groupId>com.github.IgnitedStudiosFire</groupId>
             <artifactId>SimpleJSONConfig</artifactId>
-            <version>1.4.1</version>
-            <scope>compile</scope>
+            <version>1.4.2</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
