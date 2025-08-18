@@ -25,6 +25,7 @@ public final class BlazePolls extends JavaPlugin {
     this.pluginConfig = Config.getConfig(PluginConfig.class);
 
     this.pollManager = new PollManager();
+    this.pollManager.initialize();
     this.creationManager = new CreationManager();
 
     registerListeners();
