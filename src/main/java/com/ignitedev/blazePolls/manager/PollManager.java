@@ -15,6 +15,10 @@ public class PollManager {
     service.loadAndGetAll();
   }
 
+  public void save(Poll poll) {
+    service.save(poll);
+  }
+
   public List<Poll> getActive() {
     long now = System.currentTimeMillis();
     return (List<Poll>) service.getMatching(poll -> !poll.isClosed() && !poll.isExpired(now));
