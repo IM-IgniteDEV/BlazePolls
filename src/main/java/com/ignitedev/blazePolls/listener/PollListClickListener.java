@@ -5,6 +5,7 @@ import com.ignitedev.blazePolls.gui.PollListGUI;
 import com.ignitedev.blazePolls.gui.VoteGUI;
 import com.ignitedev.blazePolls.manager.PollManager;
 import com.ignitedev.blazePolls.model.Poll;
+import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,7 +17,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class PollListClickListener implements Listener {
-  private final PluginConfig config;
+  @Autowired
+  private static PluginConfig config;
+
   private final PollManager pollManager;
 
   @EventHandler

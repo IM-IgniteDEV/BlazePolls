@@ -1,20 +1,22 @@
 package com.ignitedev.blazePolls;
 
 import co.aikar.commands.PaperCommandManager;
-import com.twodevsstudio.simplejsonconfig.SimpleJSONConfig;
-import com.twodevsstudio.simplejsonconfig.api.Config;
 import com.ignitedev.blazePolls.command.CreatePollCommand;
 import com.ignitedev.blazePolls.command.PollCommand;
 import com.ignitedev.blazePolls.config.PluginConfig;
-import com.ignitedev.blazePolls.listener.PollListeners;
+import com.ignitedev.blazePolls.listener.CreatePollClickListener;
+import com.ignitedev.blazePolls.listener.CreationChatListener;
+import com.ignitedev.blazePolls.listener.PollListClickListener;
+import com.ignitedev.blazePolls.listener.VoteClickListener;
 import com.ignitedev.blazePolls.manager.CreationManager;
 import com.ignitedev.blazePolls.manager.PollManager;
+import com.twodevsstudio.simplejsonconfig.SimpleJSONConfig;
+import com.twodevsstudio.simplejsonconfig.api.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BlazePolls extends JavaPlugin {
 
-  private PluginConfig pluginConfig;
   private PollManager pollManager;
   private CreationManager creationManager;
 
@@ -22,32 +24,32 @@ public final class BlazePolls extends JavaPlugin {
   public void onEnable() {
     SimpleJSONConfig.INSTANCE.register(this);
 
-    this.pluginConfig = Config.getConfig(PluginConfig.class);
-
     this.pollManager = new PollManager();
-    this.pollManager.initialize();
     this.creationManager = new CreationManager();
 
     registerListeners();
     registerCommands();
-    runTasks();
+    initializeTasks();
   }
 
   private void registerListeners() {
-    Bukkit.getPluginManager()
-        .registerEvents(new PollListeners(this, pluginConfig, pollManager, creationManager), this);
+    Bukkit.getPluginManager().registerEvents(new PollListClickListener(pollManager), this);
+    Bukkit.getPluginManager().registerEvents(new VoteClickListener(pollManager), this);
+    Bukkit.getPluginManager().registerEvents(new CreatePollClickListener(pollManager, creationManager), this);
+    Bukkit.getPluginManager().registerEvents(new CreationChatListener(this, pollManager, creationManager), this);
   }
 
   private void registerCommands() {
     PaperCommandManager acf = new PaperCommandManager(this);
-    acf.registerCommand(new CreatePollCommand(pluginConfig, pollManager, creationManager));
-    acf.registerCommand(new PollCommand(pluginConfig, pollManager));
+
+    acf.registerCommand(new CreatePollCommand(pollManager, creationManager));
+    acf.registerCommand(new PollCommand(pollManager));
   }
 
-  private void runTasks() {
-    long interval = Math.max(1, pluginConfig.getCloseCheckIntervalSeconds());
-    Bukkit.getScheduler()
-        .runTaskTimer(this, pollManager::checkExpirations, 20L * interval, 20L * interval);
+  private void initializeTasks() {
+    PluginConfig config = Config.getConfig(PluginConfig.class);
+
+    Bukkit.getScheduler().runTaskTimer(this, pollManager::checkExpirations, 20L * config.getCloseCheckIntervalSeconds(), 20L * config.getCloseCheckIntervalSeconds());
   }
 
   @Override
