@@ -21,7 +21,7 @@ public class TextUtility {
     return lines.stream().map(TextUtility::component).collect(Collectors.toList());
   }
 
-  public Component replacePlaceholder(Component component, Placeholder placeholder){
+  public Component replacePlaceholder(Component component, Placeholder placeholder) {
     return component.replaceText(
         TextReplacementConfig.builder()
             .matchLiteral(placeholder.key())

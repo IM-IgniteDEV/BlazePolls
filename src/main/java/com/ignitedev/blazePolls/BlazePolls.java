@@ -35,8 +35,10 @@ public final class BlazePolls extends JavaPlugin {
   private void registerListeners() {
     Bukkit.getPluginManager().registerEvents(new PollListClickListener(pollManager), this);
     Bukkit.getPluginManager().registerEvents(new VoteClickListener(pollManager), this);
-    Bukkit.getPluginManager().registerEvents(new CreatePollClickListener(pollManager, creationManager), this);
-    Bukkit.getPluginManager().registerEvents(new CreationChatListener(this, pollManager, creationManager), this);
+    Bukkit.getPluginManager()
+        .registerEvents(new CreatePollClickListener(pollManager, creationManager), this);
+    Bukkit.getPluginManager()
+        .registerEvents(new CreationChatListener(this, pollManager, creationManager), this);
   }
 
   private void registerCommands() {
@@ -49,12 +51,13 @@ public final class BlazePolls extends JavaPlugin {
   private void initializeTasks() {
     PluginConfig config = Config.getConfig(PluginConfig.class);
 
-    getServer().getGlobalRegionScheduler().runAtFixedRate(
-        this,
-        scheduledTask -> pollManager.checkExpirations(),
-        20L * config.getCloseCheckIntervalSeconds(),
-        20L * config.getCloseCheckIntervalSeconds()
-    );
+    getServer()
+        .getGlobalRegionScheduler()
+        .runAtFixedRate(
+            this,
+            scheduledTask -> pollManager.checkExpirations(),
+            20L * config.getCloseCheckIntervalSeconds(),
+            20L * config.getCloseCheckIntervalSeconds());
   }
 
   @Override

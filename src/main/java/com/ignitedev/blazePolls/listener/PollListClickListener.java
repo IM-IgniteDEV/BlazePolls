@@ -17,8 +17,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class PollListClickListener implements Listener {
-  @Autowired
-  private static PluginConfig config;
+  @Autowired private static PluginConfig config;
 
   private final PollManager pollManager;
 

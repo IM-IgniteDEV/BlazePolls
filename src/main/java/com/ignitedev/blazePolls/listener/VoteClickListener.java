@@ -15,8 +15,7 @@ import org.bukkit.inventory.Inventory;
 
 @RequiredArgsConstructor
 public class VoteClickListener implements Listener {
-  @Autowired
-  private static PluginConfig config;
+  @Autowired private static PluginConfig config;
 
   private final PollManager pollManager;
 

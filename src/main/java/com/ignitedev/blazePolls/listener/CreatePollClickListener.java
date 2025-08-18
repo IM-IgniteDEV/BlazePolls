@@ -71,7 +71,7 @@ public class CreatePollClickListener implements Listener {
       creationManager.endSession(player);
       player.closeInventory();
       player.sendMessage(TextUtility.parseMiniMessage(config.getMsgCreationCancelled()));
-    } else if (slot >= base) {     // Clicked on an existing option to edit
+    } else if (slot >= base) { // Clicked on an existing option to edit
       int index = slot - base;
       if (index < session.getOptions().size()) {
         session.setPendingEditIndex(index);

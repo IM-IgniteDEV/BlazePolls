@@ -19,8 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @CommandPermission("blazepolls.use")
 public class PollCommand extends BaseCommand {
-  @Autowired
-  private static PluginConfig config;
+  @Autowired private static PluginConfig config;
 
   private final PollManager pollManager;
 
