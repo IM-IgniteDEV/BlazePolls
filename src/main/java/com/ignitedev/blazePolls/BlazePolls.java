@@ -49,7 +49,12 @@ public final class BlazePolls extends JavaPlugin {
   private void initializeTasks() {
     PluginConfig config = Config.getConfig(PluginConfig.class);
 
-    Bukkit.getScheduler().runTaskTimer(this, pollManager::checkExpirations, 20L * config.getCloseCheckIntervalSeconds(), 20L * config.getCloseCheckIntervalSeconds());
+    getServer().getGlobalRegionScheduler().runAtFixedRate(
+        this,
+        scheduledTask -> pollManager.checkExpirations(),
+        20L * config.getCloseCheckIntervalSeconds(),
+        20L * config.getCloseCheckIntervalSeconds()
+    );
   }
 
   @Override

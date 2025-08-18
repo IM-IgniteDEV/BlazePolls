@@ -67,11 +67,9 @@ public class CreationChatListener implements Listener {
     }
     session.setPendingEditIndex(null);
     session.setAwaitingChatInput(false);
-    plugin
-        .getServer()
-        .getScheduler()
-        .runTask(
-            plugin,
-            () -> new CreatePollGUI(config, pollManager, creationManager, session).open(player));
+    plugin.getServer().getGlobalRegionScheduler().execute(
+        plugin,
+        () -> new CreatePollGUI(config, pollManager, creationManager, session).open(player)
+    );
   }
 }
