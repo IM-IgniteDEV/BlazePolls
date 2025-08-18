@@ -8,6 +8,7 @@ import com.ignitedev.blazePolls.manager.PollManager;
 import com.ignitedev.blazePolls.model.Poll;
 import com.ignitedev.blazePolls.util.Placeholder;
 import com.ignitedev.blazePolls.util.TextUtility;
+import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,8 +17,11 @@ import java.util.Optional;
 
 @CommandAlias("poll")
 @RequiredArgsConstructor
+@CommandPermission("blazepolls.use")
 public class PollCommand extends BaseCommand {
-  private final PluginConfig config;
+  @Autowired
+  private static PluginConfig config;
+
   private final PollManager pollManager;
 
   @Default
