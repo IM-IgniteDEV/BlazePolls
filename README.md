@@ -1,4 +1,4 @@
-![BlazePolls Banner](https://i.imgur.com/tqubkmM)
+![BlazePolls Banner](https://i.imgur.com/tqubkmM.jpeg)
 
 # BlazePolls
 [![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21+-blue)](https://www.minecraft.net/)
