@@ -110,7 +110,7 @@
             <groupId>com.github.IgnitedStudiosFire</groupId>
             <artifactId>SimpleJSONConfig</artifactId>
             <version>1.4.2</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
