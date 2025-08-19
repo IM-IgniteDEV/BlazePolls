@@ -50,12 +50,6 @@ Bare numbers are treated as minutes.
 - PaperMC 1.21+
 - Java 21 runtime (JDK 21 for building)
 
-## 🚀 Installation
-1. Download the latest `BlazePolls.jar` from releases
-2. Place it in your server's `plugins` folder
-3. Start/restart the server
-4. Configure options in `config.json` if needed
-
 ## Why BlazePolls?
 - Easy to use, fully GUI-driven
 - Reliable JSON storage system
