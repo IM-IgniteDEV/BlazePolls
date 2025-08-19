@@ -5,6 +5,7 @@ import com.ignitedev.blazePolls.command.CreatePollCommand;
 import com.ignitedev.blazePolls.command.PollCommand;
 import com.ignitedev.blazePolls.config.PluginConfig;
 import com.ignitedev.blazePolls.listener.CreatePollClickListener;
+import com.ignitedev.blazePolls.listener.CreatePollCloseListener;
 import com.ignitedev.blazePolls.listener.CreationChatListener;
 import com.ignitedev.blazePolls.listener.PollListClickListener;
 import com.ignitedev.blazePolls.listener.VoteClickListener;
@@ -25,6 +26,7 @@ public final class BlazePolls extends JavaPlugin {
     SimpleJSONConfig.INSTANCE.register(this);
 
     this.pollManager = new PollManager();
+    this.pollManager.initialize();
     this.creationManager = new CreationManager();
 
     registerListeners();
@@ -39,6 +41,7 @@ public final class BlazePolls extends JavaPlugin {
         .registerEvents(new CreatePollClickListener(pollManager, creationManager), this);
     Bukkit.getPluginManager()
         .registerEvents(new CreationChatListener(this, pollManager, creationManager), this);
+    Bukkit.getPluginManager().registerEvents(new CreatePollCloseListener(creationManager), this);
   }
 
   private void registerCommands() {

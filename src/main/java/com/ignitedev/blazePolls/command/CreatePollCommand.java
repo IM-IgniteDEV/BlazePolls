@@ -13,7 +13,7 @@ import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 
-@CommandPermission("blazepolls.crate")
+@CommandPermission("blazepolls.create")
 @CommandAlias("createpoll")
 @RequiredArgsConstructor
 public class CreatePollCommand extends BaseCommand {
